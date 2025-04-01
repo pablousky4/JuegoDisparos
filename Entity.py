@@ -1,5 +1,5 @@
 class Entity:
-    def __init__(self, x ,u, image):
+    def __init__(self, x ,y, image):
         self.x = x
         self.y = y
         self.image = image
