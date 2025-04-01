@@ -1,30 +1,78 @@
 from Entity import Entity
 
 class Shot(Entity):
+
     def __init__(self, x, y, image, speed):
+        """
+        Initializes a Shot object.
+        :param x: The x-coordinate of the shot.
+        :param y: The y-coordinate of the shot.
+        :param image: The image representing the shot.
+        :param speed: The speed of the shot.
+        """
         super().__init__(x, y, image)
         self.speed = speed
         self.is_alive = True
-        self.is_a_star = False
+        self.is_star = False
+        self.is_bomb = False
         self.is_bomb_exploded = False
 
     def __str__(self):
-        return super().__str__() + f", speed={self.speed}, is_alive={self.is_alive}, is_a_star={self.is_a_star}, is_bomb_exploded={self.is_bomb_exploded})"
+        """
+        Returns a string representation of the shot.
+        :return: A string representing the shot's state.
+        """
+        return f"Shot at ({self.x}, {self.y}) with speed {self.speed}, alive: {self.is_alive}, star: {self.is_star}, bomb: {self.is_bomb}"
     
+            
     def move(self):
-        if self.is_alive:
-            # Implementar lógica de movimiento del disparo
-            # Por ejemplo, mover el disparo hacia abajo
-            self.y += self.speed
-            if self.y < 0 or self.y > 600:
-                self.is_alive = False
-        else:
-            pass
+        # Implement logic to move the shot
+        pass
 
-    def hit_target(self, target):
-        if self.is_alive:
-            # Implementar lógica para detectar si el disparo ha alcanzado el objetivo
-            # Por ejemplo, verificar la colisión entre el disparo y el objetivo
-            if self.x == target.x and self.y == target.y:
-                self.is_alive = False
-                
+    def hit_target(self):
+        # Implement logic to check if the shot hits a target
+        pass
+
+    def explode(self):
+        # Implement logic for explosion
+        pass
+
+    def reset(self):
+        """
+        Resets the shot's state.
+        """
+        self.is_alive = True
+        self.is_star = False
+        self.is_bomb = False
+        self.is_bomb_exploded = False
+        # Reset other shot-specific attributes here
+        self.x = 0
+        self.y = 0
+        self.speed = 0
+
+    def serialize(self):
+        """
+        Serializes the shot's state.
+        :return: A dictionary representing the shot's state.
+        """
+        data = super().serialize()
+        data.update({
+            "speed": self.speed,
+            "is_alive": self.is_alive,
+            "is_star": self.is_star,
+            "is_bomb": self.is_bomb,
+            "is_bomb_exploded": self.is_bomb_exploded
+        })
+        return data
+    def deserialize(self, data):
+        """"
+        "Deserializes the shot's state from a dictionary."
+        """
+        super().deserialize(data)
+        self.speed = data["speed"]
+        self.is_alive = data["is_alive"]
+        self.is_star = data["is_star"]
+        self.is_bomb = data["is_bomb"]
+        self.is_bomb_exploded = data["is_bomb_exploded"]
+
+    

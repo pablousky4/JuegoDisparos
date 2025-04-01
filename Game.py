@@ -1,5 +1,6 @@
 from Player import Player
 from Opponent import Opponent
+from Boss import Boss  
 
 class Game:
     def __init__(self):
@@ -10,10 +11,18 @@ class Game:
 
     def start(self):
         self.is_running = True
+        self.score = 0
         print("Game started!")
 
+    def update(self):
+        if self.is_running:
+            print("Game is updating...")
+            # Add logic to update game state here
+        else:
+            print("Game is not running.")
+
     def end_game(self):
-        if isinstance(self.opponent, Boss) and self.lives > 0: #   
+        if isinstance(self.opponent, Boss) and self.lives > 0:
             print("Congratulations! You defeated the final boss and won the game!")
         else:
             print("Game ended!")
@@ -56,7 +65,8 @@ class Game:
         self.player.lives = 3
         print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
 
-    def update_player(self):
+
+    def update_player(self, player_name):
         """
         Updates the player's position and state.
         """
@@ -71,6 +81,7 @@ class Game:
         self.player.lives = 3
         print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
         self.player.score = 0
+ 
 
     def spawn_opponent(self, is_star=False):
         """
@@ -86,14 +97,13 @@ class Game:
         self.opponent.lives = 3
         print(f"Opponent {self.opponent} initialized with {self.opponent.lives} lives.")
         self.opponent.score = 0
-    
-    def update_opponent(self):
+        
+    def update_opponent(self, is_star=False):
         """
         Updates the opponent's position and state.
         """
         if self.is_running and self.opponent:
             print(f"Updating opponent {self.opponent}...")
-            # Add logic to update opponent's position here
             self.opponent.move()
             if self.opponent.is_star:
                 print("Opponent is a star!")
