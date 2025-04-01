@@ -61,9 +61,6 @@ class Game:
         self.player.lives = 3
         print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
         self.player.score = 0
-        self.player = Player(name=player_name)
-        self.player.lives = 3
-        print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
 
 
     def update_player(self, player_name):
@@ -76,6 +73,10 @@ class Game:
             print(f"Player {self.player.name} is moving.")
         else:
             print("Game is not running or no player to update.")
+        self.player = Player(name=player_name)
+        self.player.lives = 3
+        print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
+        self.player.score = 0
  
 
     def spawn_opponent(self, is_star=False):
