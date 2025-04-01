@@ -1,4 +1,5 @@
 from Character import Character
+from Shot import Shot
 
 class Player(Character):
     def __init__(self, name, score=0, lives=3):
@@ -22,8 +23,8 @@ class Player(Character):
             raise ValueError("Invalid direction")
     
     def shoot(self):
-        #shot= Shot(self.name, is_enemy_shot=False)
+        shot= Shot(self.name, is_enemy_shot=False)
         print(f"{self.name} has shot a bullet!")
-        #return shot
-        #comentado hasta crear la clase Shot :)
+        return shot
+ 
 

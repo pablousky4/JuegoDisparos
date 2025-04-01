@@ -1,4 +1,5 @@
 from Character import Character
+from Shot import Shot
 
 class Opponent(Character):
     def __init__(self, is_star=False):
