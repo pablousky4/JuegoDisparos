@@ -2,6 +2,9 @@ from Player import Player
 from Opponent import Opponent
 from Boss import Boss  
 
+# The score attribute is already defined in the Game class's __init__ method.
+
+
 class Game:
     def __init__(self):
         self.score = 0
@@ -61,14 +64,18 @@ class Game:
         self.player.lives = 3
         print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
         self.player.score = 0
+        self.player = Player(name=player_name)
+        self.player.lives = 3
+        print(f"Player {self.player.name} initialized with {self.player.lives} lives.")
 
 
-    def update_player(self, player_name):
+    def update_player(self):
         """
         Updates the player's position and state.
         """
         if self.is_running and self.player:
             print(f"Updating player {self.player.name}...")
+            # Add logic to update player's position here
             self.player.move()
             print(f"Player {self.player.name} is moving.")
         else:
@@ -94,12 +101,13 @@ class Game:
         print(f"Opponent {self.opponent} initialized with {self.opponent.lives} lives.")
         self.opponent.score = 0
         
-    def update_opponent(self, is_star=False):
+    def update_opponent(self):
         """
         Updates the opponent's position and state.
         """
         if self.is_running and self.opponent:
             print(f"Updating opponent {self.opponent}...")
+            # Add logic to update opponent's position here
             self.opponent.move()
             if self.opponent.is_star:
                 print("Opponent is a star!")
