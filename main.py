@@ -1,4 +1,4 @@
-import pygame
+import pygame #lo instalamos en la terminal haciendo pip install pygame
 from game import Game
 
 def main():
